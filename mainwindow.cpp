@@ -35,7 +35,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
 
-        TModel* Model1 = new TArenstorfModel();
+        TModel* Model1 = new TMathPendulum();
         MainWindow::showResult(Model1);
         delete Model1;
 
@@ -60,7 +60,7 @@ void MainWindow::showResult(TModel* model){
 
         TVector Res = model->getInitialConditions();
 
-    QVector<double> x(Result.rowCount()), y(Result.rowCount());
+    QVector<double> x(Result.rowCount()), y(Result.rowCount()), t(Result.rowCount());
 
 
         //printf ("\nVector Res: \n");
@@ -81,8 +81,9 @@ void MainWindow::showResult(TModel* model){
         {
             for (int j=0; j<Result.colCount(); j++)
             {
-                if (j == 1) { x[i] = Result(i,j); }
-                if (j == 2) { y[i] = Result(i,j); }
+                if (j == 0) { t[i] = Result(i,j); }
+                if ((j == 1)) { x[i] = Result(i,j); }
+                if ((j == 2) and (i != 0)) { y[i] = Result(i,j); }
                 //printf("%10.7f ; ", Result(i,j));
             }
             //printf("\n");
@@ -91,18 +92,19 @@ void MainWindow::showResult(TModel* model){
         ui->widget->clearGraphs();//Если нужно, но очищаем все графики
         //Добавляем один график в widget
         ui->widget->addGraph();
-        //Говорим, что отрисовать нужно график по нашим двум массивам x и y
-        ui->widget->graph(0)->setData(x, y);
+        //Говорим, что отрисовать нужно график по нашим двум массивам t и x
+
+        ui->widget->graph(0)->setData(t, x);
         ui->widget->graph(0)->setPen(QColor(50, 50, 50, 255));//задаем цвет точки
         ui->widget->graph(0)->setLineStyle(QCPGraph::lsNone);//убираем линии
         //формируем вид точек
         ui->widget->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 4));
 
-        ui->widget->xAxis->setLabel("x");
-        ui->widget->yAxis->setLabel("y");
+        ui->widget->xAxis->setLabel("t");
+        ui->widget->yAxis->setLabel("x");
 
-        ui->widget->xAxis->setRange(-2, 2);
-        ui->widget->yAxis->setRange(-2, 2);
+        ui->widget->xAxis->setRange(0, 100);
+        ui->widget->yAxis->setRange(-100, 100);
 
         ui->widget->replot();
 

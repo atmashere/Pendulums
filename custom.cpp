@@ -7,40 +7,38 @@
 //---------------------------------------------------------------------------
 // Задача Аренсторфа (начальные условия 1)
 
-const long double TArenstorfModel::m  = 0.012277471;
+const float TMathPendulum::g  = 9.81;
+const float TMathPendulum::m = 0.2;
+const float TMathPendulum::l = 0.1;
+const float TMathPendulum::dE = 0.0;
 
-TArenstorfModel::TArenstorfModel() : TModel()
+TMathPendulum::TMathPendulum() : TModel()
 {
-	X0.resize(4);
-    X0[0] = 0.994;
-    X0[1] = 0;
-    X0[2] = 0;
-    X0[3] = -2.0015851063790825224053786222;
+    X0.resize(2);
+    X0[0] = 2.;
+    X0[1] = 0.;
 }
-
 //---------------------------------------------------------------------------
 
-void TArenstorfModel::getRight( const TVector& X, long double t, TVector& Y )
+void TMathPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
-    Y.resize(4);
-	D1 = pow( pow( X[0] + m, 2 ) + pow( X[1], 2 ), 1.5 );
-	D2 = pow( pow( X[0] + m - 1, 2 ) + pow( X[1], 2 ), 1.5 );
-    Y[0] = X[2];
-    Y[1] = X[3];
-    Y[2] = X[0] + 2 * X[3] - (1 - m)*(X[0] + m) / D1 - m * (X[0] + m - 1) / D2;
-	Y[3] = X[1] - 2 * X[2] - (1 - m)*X[1] / D1 - m * X[1] / D2;
+    Y.resize(2);
+    //double FE = pow(X[1],1);
+    Y[0] = X[1];
+    Y[1] = - g/l*sin(X[0]);
+
 }
 
 //---------------------------------------------------------------------------
 // Задача Аренсторфа (начальные условия 2)
 
-TArenstorfModel2::TArenstorfModel2() : TArenstorfModel()
+/*ArenstorfModel2::TArenstorfModel2() : TArenstorfModel()
 {
 	X0.resize(4);
     X0[0] = 0.994;
     X0[1] = 0;
     X0[2] = 0;
     X0[3] = -2.0317326295573368357302057924;
-}
+}*/
 //---------------------------------------------------------------------------
 

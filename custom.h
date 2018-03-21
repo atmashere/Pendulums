@@ -10,15 +10,16 @@
 class TMathPendulum : public TModel
 {
     protected:
-        const float g;
-        float m, l, phi;
+        static const float g, dE;
+        static const float m, l;
+        float phi;
 
     public:
         TMathPendulum( );
         void getRight( const TVector& X, long double t, TVector& Y );
         ~TMathPendulum( );
 
-}
+};
 
 //class TArenstorfModel  : public TModel
 //{
