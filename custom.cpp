@@ -78,11 +78,11 @@ void TIdealPhysicPendulum::getRight( const TVector& X, long double t, TVector& Y
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 //
-const double TSlydingPhysicPendulum::k  = 1.;
+const double TViscousPhysicPendulum::k  = 1.;
 const double TViscousPhysicPendulum::mu_1  = 0.4;
 const double TViscousPhysicPendulum::m  = 1.;
 
-TViscousPhysicPendulum::TSlydingPhysicPendulum() : TModel()
+TViscousPhysicPendulum::TViscousPhysicPendulum() : TModel()
 {
     X0.resize(2);
     X0[0] = 1.;
@@ -115,15 +115,15 @@ TSlydingPhysicPendulum::TSlydingPhysicPendulum() : TModel()
 
 void TSlydingPhysicPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
-    short int temp = 0;
-    if (X[1] > 0)
-        { temp = 1; }
-    else
-        if (X[1] = 0)
-            { temp = 0; }
-         else
-            if (X[1] < 0)
-                { temp = -1; }
+//    short int temp = 1;
+//    if (X[1] > 0)
+//        { temp = 1; }
+//    else
+//        if (X[1] = 0)
+//            { temp = 0; }
+//         else
+//            if (X[1] < 0)
+//                { temp = -1; }
 
 
     Y.resize(2);

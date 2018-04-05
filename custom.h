@@ -36,4 +36,52 @@ class TRealMathPendulum : public TModel
 
 };
 
+//---------------------------------------------------------------------------
+// Модель маятника
+
+class TIdealPhysicPendulum : public TModel
+{
+    protected:
+        static const double k;
+        static const double m;
+
+    public:
+        TIdealPhysicPendulum( );
+        void getRight( const TVector& X, long double t, TVector& Y );
+        ~TIdealPhysicPendulum( );
+
+};
+
+//---------------------------------------------------------------------------
+// Модель маятника
+
+class TViscousPhysicPendulum : public TModel
+{
+    protected:
+        static const double k;
+        static const double mu_1, m;
+
+    public:
+        TViscousPhysicPendulum( );
+        void getRight( const TVector& X, long double t, TVector& Y );
+        ~TViscousPhysicPendulum( );
+
+};
+
+//---------------------------------------------------------------------------
+// Модель маятника
+
+class TSlydingPhysicPendulum : public TModel
+{
+    protected:
+        static const double g, k;
+        static const double mu_2, m;
+
+    public:
+        TSlydingPhysicPendulum( );
+        void getRight( const TVector& X, long double t, TVector& Y );
+        ~TSlydingPhysicPendulum( );
+
+};
+
 
