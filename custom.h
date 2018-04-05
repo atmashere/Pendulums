@@ -5,42 +5,35 @@
 #include "model.h"
 
 //---------------------------------------------------------------------------
-// Модель математического маятника (начальные условия 1)
+// Модель математического маятника
 
-class TMathPendulum : public TModel
+class TIdealMathPendulum : public TModel
 {
     protected:
-        static const float g, dE;
-        static const float m, l;
-        float phi;
+        static const double g;
+                     double l;
 
     public:
-        TMathPendulum( );
+        TIdealMathPendulum( );
         void getRight( const TVector& X, long double t, TVector& Y );
-        ~TMathPendulum( );
+        ~TIdealMathPendulum( );
 
 };
 
-//class TArenstorfModel  : public TModel
-//{
-//    protected:
-//        static const long double m;
-//		long double D1, D2;
-//    public:
-//        TArenstorfModel(  );
-//		void getRight( const TVector& X, long double t, TVector& Y );
-//};
-
-
 //---------------------------------------------------------------------------
-// Задача Аренсторфа (начальные условия 2)
+// Модель математического маятника
+
+class TRealMathPendulum : public TModel
+{
+    protected:
+        static const double g;
+                     double l, beta;
+
+    public:
+        TRealMathPendulum( );
+        void getRight( const TVector& X, long double t, TVector& Y );
+        ~TRealMathPendulum( );
+
+};
 
 
-
-
-//class TArenstorfModel2 : public TArenstorfModel
-//{
-//    public:
-//        TArenstorfModel2(  );
-//};
-//---------------------------------------------------------------------------

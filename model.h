@@ -27,8 +27,8 @@ class TModel
         TModel()
             : SamplingIncrement( 1e-1 )
             , t0( 0. )
-            , t1( 90. )
-            , N( 0.1 )
+            , t1( 20. )
+            , N ( 0.01 )
         {}
         // Абстрактная перегружаемая функция правых частей ДУ (X - вектор состояния, t - независимый аргумент)
         //virtual TVector getRight( const TVector& X, long double t ) = 0;
