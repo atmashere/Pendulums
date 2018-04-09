@@ -23,7 +23,7 @@ void TIdealMathPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
     Y.resize(2);
     Y[0] = X[1];
-    Y[1] = g/l*sin(X[0]);
+    Y[1] = -g/l*sin(X[0]);
 
 
 }
@@ -102,11 +102,11 @@ void TViscousPhysicPendulum::getRight( const TVector& X, long double t, TVector&
 //
 const double TSlydingPhysicPendulum::k  = 1.;
 const double TSlydingPhysicPendulum::g  = 9.81;
-const double TSlydingPhysicPendulum::mu_2  = 0.02;
 const double TSlydingPhysicPendulum::m  = 1.;
 
 TSlydingPhysicPendulum::TSlydingPhysicPendulum() : TModel()
 {
+    mu_2 = 0.015;
     X0.resize(2);
     X0[0] = 2.;
     X0[1] = 0.;
@@ -115,19 +115,18 @@ TSlydingPhysicPendulum::TSlydingPhysicPendulum() : TModel()
 
 void TSlydingPhysicPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
-//    short int temp = 1;
-//    if (X[1] > 0)
-//        { temp = 1; }
-//    else
-//        if (X[1] = 0)
-//            { temp = 0; }
-//         else
-//            if (X[1] < 0)
-//                { temp = -1; }
+
+    if (X[1] > 0)
+        { mu_2 = -0.015; }
+    else
+        if (X[1] < 0)
+            { mu_2 = 0.015; }
+        else
+            {  mu_2 = 0.; }
 
 
     Y.resize(2);
     Y[0] = X[1];
-    Y[1] = (-k*X[0])/m + mu_2*m*g;
+    Y[1] = mu_2*g -(k/m*X[0]) ;
 }
 

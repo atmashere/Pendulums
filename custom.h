@@ -75,7 +75,8 @@ class TSlydingPhysicPendulum : public TModel
 {
     protected:
         static const double g, k;
-        static const double mu_2, m;
+        static const double m;
+        double mu_2;
 
     public:
         TSlydingPhysicPendulum( );

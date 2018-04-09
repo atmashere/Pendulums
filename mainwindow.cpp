@@ -111,7 +111,7 @@ void MainWindow::showResult(TModel* model){
     ui->widget->yAxis->setLabel("val");
 
     ui->widget->xAxis->setRange(0, 40);
-    ui->widget->yAxis->setRange(-100, 100);
+    ui->widget->yAxis->setRange(-2.4, 2.4);
 
     ui->widget->replot();
 
